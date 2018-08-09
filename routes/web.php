@@ -28,8 +28,12 @@ Route::get('/soldItems',function (){
    return view('sold_items');
 });
 
-Route::get('/users',function (){
-   return view('users');
+Route::get('/addUser',function (){
+   return view('addUser');
 });
 
+Route::get('/users','usersController@show');
+
 //the actions
+Route::post('/addUser','usersController@addUser');//add new user
+

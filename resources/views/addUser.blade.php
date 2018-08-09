@@ -1,65 +1,21 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Brian Mutinda
- * Date: 08/08/2018
- * Time: 10:38 PM
- */
-?>
-
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
-
         <div class="row">
-            <div class="col-lg-8">
-                <center><h1>All Users</h1></center>
-
-                <div class="col-md-2 col-md-offset-9">
-                  <a href="/addUser" class="btn btn-lg btn-primary">Add User</a>
-                </div>
-
-                <table class="table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Category</th>
-                        <th>Edit</th>
-                    </tr>
-
-                    @foreach($users as $user)
-                    <tr class="user{{$user->id}} table-hover">
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->phone}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->category}}</td>
-                        <td>
-                            <a href="#"
-                                class="edit_user_link btn btn-success"
-                                id="edit_user_link"
-                                data-id="{{$user->id}}"
-                                data-phone="{{$user->phone}}"
-                                data-email="{{$user->email}}"
-                                data-category="{{$user->category}}"
-                            >Edit</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-
-            <div class="col-lg-4">
-                <!--Edit User Profile-->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1>Edit User Profile</h1>
-                    </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Register A New User</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="">
+                        <form class="form-horizontal" method="POST" action="/addUser">
                             {{ csrf_field() }}
+                            <!--Check for sucess message-->
+                                @if(session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {{session()->get('message')}}
+                                    </div>
+                                @endif
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Name</label>
@@ -103,6 +59,17 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{$errors->has('category')? 'has-error':''}}">
+                                <label for="phone" class="col-md-4 control-label">User Category</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control" name="user_category">
+                                        <option value="User">User</option>
+                                        <option value="Manager">Manager</option>
+                                    </select>
+
+                                </div>
+                            </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-md-4 control-label">Password</label>
@@ -129,18 +96,14 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Submit Changes
+                                        Register
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 @endsection
-

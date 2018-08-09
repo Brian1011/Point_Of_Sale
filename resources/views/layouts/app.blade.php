@@ -39,6 +39,7 @@
                         <li><a href="/home">Home</a></li>
                         <li><a href="/addItems">New Items</a></li>
                         <li><a href="/soldItems">Sold Items</a></li>
+                        <li><a href="/addUser">New User</a></li>
                         <li><a href="/users">Users</a></li>
                         <li><a href="#">Reports</a></li>
                     </ul>
