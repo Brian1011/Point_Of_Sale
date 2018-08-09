@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('item_selling_price');
             $table->string('item_quantity');
             $table->string('item_profit');
-            $table->string('item_extras');
+            $table->string('item_extras')->nullable();
             $table->timestamps();
         });
     }

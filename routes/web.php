@@ -18,3 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//the web pages or views
+Route::get('/addItems',function (){
+    return view('add_items');
+});
+
+Route::get('/soldItems',function (){
+   return view('sold_items');
+});
+
+Route::get('/users',function (){
+   return view('users');
+});
+
+//the actions
